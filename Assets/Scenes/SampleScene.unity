@@ -288,6 +288,7 @@ MonoBehaviour:
   PointPrefabTransform: {fileID: 2599885494690495832, guid: 06fda700b7c2924428aa37ab373397e9,
     type: 3}
   CubesAmount: 80
+  Period: 2
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

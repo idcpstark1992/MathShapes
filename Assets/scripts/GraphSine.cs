@@ -2,11 +2,12 @@ using UnityEngine;
 
 namespace Graphs
 {
-    public class Graph : MonoBehaviour
+    public  class GraphSine : MonoBehaviour
     {
         [SerializeField] private Transform              PointPrefabTransform;
-        [SerializeField,Range(10,80)] private int        CubesAmount;
-        private Transform[] PointsTrackedPositions;
+        [SerializeField,Range(10,80)] private int       CubesAmount;
+        [SerializeField, Range(2, 6)] private int       Period;
+        protected Transform[] PointsTrackedPositions;
         private void Start()=> CreateGraph();
         private void CreateGraph()
         {
@@ -35,16 +36,15 @@ namespace Graphs
                 m_toInstantiatePoint.SetParent(m_Parent.transform);
             }
         }
-
-        private void Update()
+        private void Update() 
         {
             float m_time = Time.time;
             for (int i = 0; i < PointsTrackedPositions.Length; i++)
             {
-                Transform   m_trasform          = PointsTrackedPositions[i];
-                Vector3     m_currentPosition   = m_trasform.localPosition;
-                m_currentPosition.y             = Mathf.Sin(Mathf.PI  * (m_currentPosition.x + m_time));
-                m_trasform.localPosition        = m_currentPosition;
+                Transform m_trasform = PointsTrackedPositions[i];
+                Vector3 m_currentPosition = m_trasform.localPosition;
+                m_currentPosition.y = Functions.MultiSineFunction(m_currentPosition.x, m_time, Mathf.PI );
+                m_trasform.localPosition = m_currentPosition;
             }
         }
     }
